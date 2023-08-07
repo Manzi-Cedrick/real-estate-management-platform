@@ -29,14 +29,14 @@ const DEMO_DATA = [
   {
     id: 2,
     clientName: "Lennie Swiffan",
-    clientAddress: "London",
+    clientAddress: "Granada",
     content:
       "This place is exactly like the picture posted on Chisfis. Great service, we had a great stay!",
   },
   {
     id: 3,
     clientName: "Berta Emili",
-    clientAddress: "Tokyo",
+    clientAddress: "Valencia",
     content:
       "This place is exactly like the picture posted on Chisfis. Great service, we had a great stay!",
   },

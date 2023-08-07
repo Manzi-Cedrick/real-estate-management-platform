@@ -133,7 +133,7 @@ const TabFilters = () => {
                   }
                 >
                   <span className=" text-neutral-6000 dark:text-neutral-300 text-sm">
-                    {idx ? " Tokyo to Singapore" : " Singapore to Tokyo"}
+                    {idx ? " Valencia to Barcelona" : " Barcelona to Valencia"}
                   </span>
                   <div></div>
                   <div className="space-y-3">

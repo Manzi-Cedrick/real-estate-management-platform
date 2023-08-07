@@ -1,12 +1,20 @@
 import NcInputNumber from "components/NcInputNumber/NcInputNumber";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Select from "shared/Select/Select";
 import CommonLayout from "./CommonLayout";
 import FormItem from "./FormItem";
+import { Value } from "sass";
 
-export interface PageAddListing3Props {}
+export interface PageAddListing3Props { }
 
 const PageAddListing3: FC<PageAddListing3Props> = () => {
+  const [acreage, setAcreage] = useState<any>("");
+  const [guests, setGuests] = useState<number>();
+  const [bedroom, setBedroom] = useState<number>();
+  const [beds, setBeds] = useState<number>();
+  const [bathroom, setBathroom] = useState<number>();
+  const [kitchen, setKitchen] = useState<number>();
+
   return (
     <CommonLayout
       index="03"
@@ -20,7 +28,7 @@ const PageAddListing3: FC<PageAddListing3Props> = () => {
         <div className="space-y-8">
           {/* ITEM */}
           <FormItem label="Acreage (m2)">
-            <Select>
+            <Select onChange={(e) => { setAcreage(e.target.value); console.log(e.target.value) }} >
               <option value="100">100</option>
               <option value="200">200</option>
               <option value="300">300</option>
@@ -28,11 +36,11 @@ const PageAddListing3: FC<PageAddListing3Props> = () => {
               <option value="500">500</option>
             </Select>
           </FormItem>
-          <NcInputNumber label="Guests" defaultValue={4} />
-          <NcInputNumber label="Bedroom" defaultValue={4} />
-          <NcInputNumber label="Beds" defaultValue={4} />
-          <NcInputNumber label="Bathroom" defaultValue={2} />
-          <NcInputNumber label="Kitchen" defaultValue={2} />
+          <NcInputNumber label="Guests" defaultValue={4} onChange={(e) => console.log("Guests : ", e)} />
+          <NcInputNumber label="Bedroom" defaultValue={4} onChange={(e) => console.log("Bedroom : ", e)} />
+          <NcInputNumber label="Beds" defaultValue={4} onChange={(e) => console.log("Beds : ", e)} />
+          <NcInputNumber label="Bathroom" defaultValue={2} onChange={(e) => console.log("Bathroom : ", e)} />
+          <NcInputNumber label="Kitchen" defaultValue={2} onChange={(e) => console.log("Kitchen : ", e)} />
         </div>
       </>
     </CommonLayout>

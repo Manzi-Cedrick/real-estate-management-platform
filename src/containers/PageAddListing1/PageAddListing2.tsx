@@ -2,16 +2,23 @@ import { MapPinIcon } from "@heroicons/react/24/solid";
 import LocationMarker from "components/AnyReactComponent/LocationMarker";
 import Label from "components/Label/Label";
 import GoogleMapReact from "google-map-react";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import ButtonSecondary from "shared/Button/ButtonSecondary";
 import Input from "shared/Input/Input";
 import Select from "shared/Select/Select";
 import CommonLayout from "./CommonLayout";
 import FormItem from "./FormItem";
 
-export interface PageAddListing2Props {}
+export interface PageAddListing2Props { }
 
 const PageAddListing2: FC<PageAddListing2Props> = () => {
+  const [country, setCountry] = useState<any>("");
+  const [street, setStreet] = useState<any>("");
+  const [roomNumber, setRoomNumber] = useState<any>("");
+  const [city, setCity] = useState<any>("");
+  const [state, setState] = useState<any>("");
+  const [postalCode, setPostalCode] = useState<any>("");
+
   return (
     <CommonLayout
       index="02"
@@ -29,31 +36,31 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
           </ButtonSecondary>
           {/* ITEM */}
           <FormItem label="Country/Region">
-            <Select>
+            <Select onChange={(e) => { setCountry(e.target.value); console.log(e.target.value) }} >
               <option value="Viet Nam">Viet Nam</option>
               <option value="Thailand">Thailand</option>
               <option value="France">France</option>
-              <option value="Singapore">Singapore</option>
+              <option value="Barcelona">Barcelona</option>
               <option value="Jappan">Jappan</option>
               <option value="Korea">Korea</option>
               <option value="...">...</option>
             </Select>
           </FormItem>
           <FormItem label="Street">
-            <Input placeholder="..." />
+            <Input placeholder="..." onChange={(e) => { setStreet(e.target.value); console.log(e.target.value) }} />
           </FormItem>
           <FormItem label="Room number (optional)">
-            <Input />
+            <Input onChange={(e) => { setRoomNumber(e.target.value); console.log(e.target.value) }} />
           </FormItem>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-5">
             <FormItem label="City">
-              <Input />
+              <Input onChange={(e) => { setCity(e.target.value); console.log(e.target.value) }} />
             </FormItem>
             <FormItem label="State">
-              <Input />
+              <Input onChange={(e) => { setState(e.target.value); console.log(e.target.value) }} />
             </FormItem>
             <FormItem label="Postal code">
-              <Input />
+              <Input onChange={(e) => { setPostalCode(e.target.value); console.log(e.target.value) }} />
             </FormItem>
           </div>
           <div>

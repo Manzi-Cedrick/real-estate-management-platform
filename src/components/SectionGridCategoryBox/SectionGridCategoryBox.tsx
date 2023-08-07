@@ -15,7 +15,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "1",
     href: "#",
-    name: "New Yourk",
+    name: "Madrid",
     taxonomy: "category",
     count: 1882,
     thumbnail:
@@ -24,7 +24,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "2",
     href: "#",
-    name: "Singapore",
+    name: "Barcelona",
     taxonomy: "category",
     count: 8288,
     thumbnail:
@@ -33,7 +33,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "2",
     href: "#",
-    name: "Paris",
+    name: "Seville",
     taxonomy: "category",
     count: 1288,
     thumbnail:
@@ -42,7 +42,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "2",
     href: "#",
-    name: "London",
+    name: "Granada",
     taxonomy: "category",
     count: 112,
     thumbnail:
@@ -51,7 +51,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "2",
     href: "#",
-    name: "Tokyo",
+    name: "Valencia",
     taxonomy: "category",
     count: 323,
     thumbnail:
@@ -69,7 +69,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "11",
     href: "#",
-    name: "New Yourk",
+    name: "Madrid",
     taxonomy: "category",
     count: 1775,
     thumbnail:
@@ -78,7 +78,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "222",
     href: "#",
-    name: "Singapore",
+    name: "Barcelona",
     taxonomy: "category",
     count: 1288,
     thumbnail:

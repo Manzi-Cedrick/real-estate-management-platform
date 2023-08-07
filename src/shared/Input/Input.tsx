@@ -14,7 +14,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       fontClass = "text-sm font-normal",
       rounded = "rounded-2xl",
       children,
-      type = "text",
+      type = "number",
       ...args
     },
     ref

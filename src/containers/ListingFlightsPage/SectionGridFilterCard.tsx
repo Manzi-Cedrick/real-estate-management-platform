@@ -22,7 +22,7 @@ const DEMO_DATA: FlightCardProps["data"][] = [
     price: "$3,380",
     airlines: {
       logo: "https://www.gstatic.com/flights/airline_logos/70px/SQ.png",
-      name: "Singapore Airlines",
+      name: "Barcelona Airlines",
     },
   },
   {
@@ -46,7 +46,7 @@ const DEMO_DATA: FlightCardProps["data"][] = [
     price: "$3,380",
     airlines: {
       logo: "https://www.gstatic.com/flights/airline_logos/70px/SQ.png",
-      name: "Singapore Airlines",
+      name: "Barcelona Airlines",
     },
   },
   {
@@ -62,7 +62,7 @@ const DEMO_DATA: FlightCardProps["data"][] = [
     price: "$3,380",
     airlines: {
       logo: "https://www.gstatic.com/flights/airline_logos/70px/SQ.png",
-      name: "Singapore Airlines",
+      name: "Barcelona Airlines",
     },
   },
 ];
@@ -76,7 +76,7 @@ const SectionGridFilterCard: FC<SectionGridFilterCardProps> = ({
       data-nc-id="SectionGridFilterCard"
     >
       <Heading2
-        heading="Singapore - Tokyo"
+        heading="Barcelona - Valencia"
         subHeading={
           <span className="block text-neutral-500 dark:text-neutral-400 mt-3">
             22 flights

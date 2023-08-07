@@ -7,8 +7,8 @@ import I404Png from "images/404.png";
 const Page404: React.FC = () => (
   <div className="nc-Page404">
     <Helmet>
-      <title>404 || Booking React Template</title>
-    </Helmet>
+    <title>Lotus Revenu</title>
+        </Helmet>
     <div className="container relative pt-5 pb-16 lg:pb-20 lg:pt-5">
       {/* HEADER */}
       <header className="text-center max-w-2xl mx-auto space-y-2">

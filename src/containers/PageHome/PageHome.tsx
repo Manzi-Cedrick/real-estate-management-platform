@@ -13,12 +13,13 @@ import SectionGridCategoryBox from "components/SectionGridCategoryBox/SectionGri
 import SectionBecomeAnAuthor from "components/SectionBecomeAnAuthor/SectionBecomeAnAuthor";
 import SectionVideos from "./SectionVideos";
 import SectionClientSay from "components/SectionClientSay/SectionClientSay";
+import EveryLike from "components/EveryLike";
 
 const DEMO_CATS: TaxonomyType[] = [
   {
     id: "1",
     href: "/listing-stay",
-    name: "New Yourk",
+    name: "Madrid",
     taxonomy: "category",
     count: 188288,
     thumbnail:
@@ -27,7 +28,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "2",
     href: "/listing-stay",
-    name: "Singapore",
+    name: "Barcelona",
     taxonomy: "category",
     count: 188288,
     thumbnail:
@@ -36,7 +37,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "2",
     href: "/listing-stay",
-    name: "Paris",
+    name: "Seville",
     taxonomy: "category",
     count: 188288,
     thumbnail:
@@ -45,7 +46,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "2",
     href: "/listing-stay",
-    name: "London",
+    name: "Granada",
     taxonomy: "category",
     count: 188288,
     thumbnail:
@@ -54,7 +55,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "2",
     href: "/listing-stay",
-    name: "Tokyo",
+    name: "Valencia",
     taxonomy: "category",
     count: 188288,
     thumbnail:
@@ -128,6 +129,8 @@ function PageHome() {
       <div className="container relative space-y-24 mb-24 lg:space-y-28 lg:mb-28">
         {/* SECTION HERO */}
         <SectionHero className="pt-10 lg:pt-16 lg:pb-16" />
+
+        <EveryLike />
 
         {/* SECTION 1 */}
         <SectionSliderNewCategories

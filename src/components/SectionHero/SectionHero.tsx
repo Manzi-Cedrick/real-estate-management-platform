@@ -22,7 +22,7 @@ const SectionHero: FC<SectionHeroProps> = ({ className = "" }) => {
             Accompanying us, you have a trip full of experiences. With Chisfis,
             booking accommodation, resort villas, hotels
           </span>
-          <ButtonPrimary>Start your search</ButtonPrimary>
+          <ButtonPrimary href={"/listing-real-estate-map"}>Start your search</ButtonPrimary>
         </div>
         <div className="flex-grow">
           <img className="w-full" src={imagePng} alt="hero" />

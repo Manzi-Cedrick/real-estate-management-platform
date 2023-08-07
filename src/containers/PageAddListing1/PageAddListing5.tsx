@@ -1,11 +1,19 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
 import Input from "shared/Input/Input";
 import CommonLayout from "./CommonLayout";
+import { text } from "stream/consumers";
 
-export interface PageAddListing5Props {}
+export interface PageAddListing5Props { }
 
 const PageAddListing5: FC<PageAddListing5Props> = () => {
+  const [additionalRulesList, setAdditionalRulesList] = useState<string[]>([
+    "No smoking in common areas",
+    "Do not wear shoes/shoes in the house",
+    "No cooking in the bedroom",
+  ]);
+  const [additionalRule, setAdditionalRule] = useState<string>("");
+
   const renderRadio = (
     name: string,
     id: string,
@@ -13,11 +21,12 @@ const PageAddListing5: FC<PageAddListing5Props> = () => {
     defaultChecked?: boolean
   ) => {
     return (
-      <div className="flex items-center">
+      <div className="flex items-center" >
         <input
           defaultChecked={defaultChecked}
           id={id + name}
           name={name}
+          onChange={(e) => console.log(name, " : ", id)}
           type="radio"
           className="focus:ring-primary-500 h-6 w-6 text-primary-500 border-neutral-300 !checked:bg-primary-500 bg-transparent"
         />
@@ -31,13 +40,26 @@ const PageAddListing5: FC<PageAddListing5Props> = () => {
     );
   };
 
-  const renderNoInclude = (text: string) => {
+  const addRule = () => {
+    if (additionalRule == "") return;
+    else {
+      setAdditionalRulesList([...additionalRulesList, additionalRule]);
+      setAdditionalRule("")
+    }
+  }
+
+  const deleteItem = (text: string) => {
+    setAdditionalRulesList(additionalRulesList.filter(item => item != text))
+  }
+
+  const renderNoInclude = (text: string, index: number) => {
+    console.log(text)
     return (
-      <div className="flex items-center justify-between py-3">
+      <div className="flex items-center justify-between py-3" key={index}>
         <span className="text-neutral-6000 dark:text-neutral-400 font-medium">
           {text}
         </span>
-        <i className="text-2xl text-neutral-400 las la-times-circle hover:text-neutral-900 dark:hover:text-neutral-100 cursor-pointer"></i>
+        <i onClick={() => deleteItem(text)} className="text-2xl text-neutral-400 las la-times-circle hover:text-neutral-900 dark:hover:text-neutral-100 cursor-pointer"></i>
       </div>
     );
   };
@@ -113,14 +135,16 @@ const PageAddListing5: FC<PageAddListing5Props> = () => {
           <span className="block text-lg font-semibold">Additional rules</span>
           <div className="flow-root">
             <div className="-my-3 divide-y divide-neutral-100 dark:divide-neutral-800">
-              {renderNoInclude("No smoking in common areas")}
-              {renderNoInclude("Do not wear shoes/shoes in the house")}
-              {renderNoInclude("No cooking in the bedroom")}
+              {
+                additionalRulesList.map((item, index) => {
+                  return renderNoInclude(item, index);
+                })
+              }
             </div>
           </div>
           <div className="flex flex-col sm:flex-row sm:justify-between space-y-3 sm:space-y-0 sm:space-x-5">
-            <Input className="!h-full" placeholder="No smoking..." />
-            <ButtonPrimary className="flex-shrink-0">
+            <Input className="!h-full" placeholder="No smoking..." value={additionalRule} onChange={(e) => setAdditionalRule(e.target.value)} />
+            <ButtonPrimary className="flex-shrink-0" onClick={() => addRule()}>
               <i className="text-xl las la-plus"></i>
               <span className="ml-3">Add tag</span>
             </ButtonPrimary>

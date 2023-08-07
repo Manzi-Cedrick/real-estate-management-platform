@@ -39,7 +39,7 @@ const FlightCard: FC<FlightCardProps> = ({
                   Monday, August 12 · 10:00
                 </span>
                 <span className=" font-semibold">
-                  Tokyo International Airport (HND)
+                  Valencia International Airport (HND)
                 </span>
               </div>
               <div className="flex flex-col space-y-1">
@@ -47,7 +47,7 @@ const FlightCard: FC<FlightCardProps> = ({
                   Monday, August 16 · 10:00
                 </span>
                 <span className=" font-semibold">
-                  Singapore International Airport (SIN)
+                  Barcelona International Airport (SIN)
                 </span>
               </div>
             </div>

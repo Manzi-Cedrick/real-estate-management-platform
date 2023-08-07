@@ -9,10 +9,7 @@ import NcModal from "shared/NcModal/NcModal";
 import ModalSelectDate from "components/ModalSelectDate";
 import converSelectedDateToString from "utils/converSelectedDateToString";
 import ModalSelectGuests from "components/ModalSelectGuests";
-import Label from "components/Label/Label";
-import Input from "shared/Input/Input";
-import Textarea from "shared/Textarea/Textarea";
-import ButtonPrimary from "shared/Button/ButtonPrimary";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 export interface CheckOutPagePageMainProps {
   className?: string;
@@ -29,6 +26,12 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
     guestChildren: 1,
     guestInfants: 1,
   });
+
+  const initialOptions = {
+    clientId: "test",
+    currency: "USD",
+    intent: "capture",
+  };
 
   const renderSidebar = () => {
     return (
@@ -134,10 +137,9 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                     <span className="text-sm text-neutral-400">Guests</span>
                     <span className="mt-1.5 text-lg font-semibold">
                       <span className="line-clamp-1">
-                        {`${
-                          (guests.guestAdults || 0) +
+                        {`${(guests.guestAdults || 0) +
                           (guests.guestChildren || 0)
-                        } Guests, ${guests.guestInfants || 0} Infants`}
+                          } Guests, ${guests.guestInfants || 0} Infants`}
                       </span>
                     </span>
                   </div>
@@ -148,97 +150,19 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
           </div>
         </div>
 
-        <div>
+        <div className="justify-center text-center w-full">
           <h3 className="text-2xl font-semibold">Pay with</h3>
-          <div className="w-14 border-b border-neutral-200 dark:border-neutral-700 my-5"></div>
-
-          <div className="mt-6">
-            <Tab.Group>
-              <Tab.List className="flex my-5 gap-1">
-                <Tab as={Fragment}>
-                  {({ selected }) => (
-                    <button
-                      className={`px-4 py-1.5 sm:px-6 sm:py-2.5 rounded-full focus:outline-none ${
-                        selected
-                          ? "bg-neutral-800 dark:bg-neutral-200 text-white dark:text-neutral-900"
-                          : "text-neutral-6000 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                      }`}
-                    >
-                      Paypal
-                    </button>
-                  )}
-                </Tab>
-                <Tab as={Fragment}>
-                  {({ selected }) => (
-                    <button
-                      className={`px-4 py-1.5 sm:px-6 sm:py-2.5  rounded-full flex items-center justify-center focus:outline-none  ${
-                        selected
-                          ? "bg-neutral-800 dark:bg-neutral-200 text-white dark:text-neutral-900"
-                          : " text-neutral-6000 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                      }`}
-                    >
-                      <span className="mr-2.5">Credit card</span>
-                      <img className="w-8" src={visaPng} alt="visa" />
-                      <img
-                        className="w-8"
-                        src={mastercardPng}
-                        alt="mastercard"
-                      />
-                    </button>
-                  )}
+          <div className="w-full border-b border-neutral-200 dark:border-neutral-700 my-5"></div>
+          <div className="mt-6 w-full">
+            <Tab.Group >
+              <Tab.List className="my-5 gap-1 w-full mx-auto">
+                <Tab as={Fragment} >
+                  <PayPalScriptProvider options={initialOptions}>
+                    <PayPalButtons />
+                  </PayPalScriptProvider>
                 </Tab>
               </Tab.List>
-
-              <Tab.Panels>
-                <Tab.Panel className="space-y-5">
-                  <div className="space-y-1">
-                    <Label>Card number </Label>
-                    <Input defaultValue="111 112 222 999" />
-                  </div>
-                  <div className="space-y-1">
-                    <Label>Card holder </Label>
-                    <Input defaultValue="JOHN DOE" />
-                  </div>
-                  <div className="flex space-x-5  ">
-                    <div className="flex-1 space-y-1">
-                      <Label>Expiration date </Label>
-                      <Input type="date" defaultValue="MM/YY" />
-                    </div>
-                    <div className="flex-1 space-y-1">
-                      <Label>CVC </Label>
-                      <Input />
-                    </div>
-                  </div>
-                  <div className="space-y-1">
-                    <Label>Messager for author </Label>
-                    <Textarea placeholder="..." />
-                    <span className="text-sm text-neutral-500 block">
-                      Write a few sentences about yourself.
-                    </span>
-                  </div>
-                </Tab.Panel>
-                <Tab.Panel className="space-y-5">
-                  <div className="space-y-1">
-                    <Label>Email </Label>
-                    <Input type="email" defaultValue="example@gmail.com" />
-                  </div>
-                  <div className="space-y-1">
-                    <Label>Password </Label>
-                    <Input type="password" defaultValue="***" />
-                  </div>
-                  <div className="space-y-1">
-                    <Label>Messager for author </Label>
-                    <Textarea placeholder="..." />
-                    <span className="text-sm text-neutral-500 block">
-                      Write a few sentences about yourself.
-                    </span>
-                  </div>
-                </Tab.Panel>
-              </Tab.Panels>
             </Tab.Group>
-            <div className="pt-8">
-              <ButtonPrimary href={"/pay-done"}>Confirm and pay</ButtonPrimary>
-            </div>
           </div>
         </div>
       </div>

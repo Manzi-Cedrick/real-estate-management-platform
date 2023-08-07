@@ -1,10 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Textarea from "shared/Textarea/Textarea";
 import CommonLayout from "./CommonLayout";
 
-export interface PageAddListing6Props {}
+export interface PageAddListing6Props { }
 
 const PageAddListing6: FC<PageAddListing6Props> = () => {
+  const [description, setDescription] = useState<string>("");
+
   return (
     <CommonLayout
       index="06"
@@ -23,7 +25,7 @@ const PageAddListing6: FC<PageAddListing6Props> = () => {
           </span>
         </div>
 
-        <Textarea placeholder="..." rows={14} />
+        <Textarea placeholder="..." rows={14} onChange={(e) => { setDescription(e.target.value); console.log(e.target.value) }} />
       </>
     </CommonLayout>
   );

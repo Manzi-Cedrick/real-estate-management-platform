@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Checkbox from "shared/Checkbox/Checkbox";
 import CommonLayout from "./CommonLayout";
 
-export interface PageAddListing4Props {}
+export interface PageAddListing4Props { }
 
 const PageAddListing4: FC<PageAddListing4Props> = () => {
   return (
@@ -28,7 +28,7 @@ const PageAddListing4: FC<PageAddListing4Props> = () => {
               General amenities
             </label>
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              <Checkbox label="Wifi" name="Wifi" defaultChecked />
+              <Checkbox label="Wifi" name="Wifi" defaultChecked  />
               <Checkbox label="Internet" name="Internet" />
               <Checkbox label="TV" name="TV" defaultChecked />
               <Checkbox label="Air conditioning" name="Air conditioning" />

@@ -32,8 +32,6 @@ const StayCard: FC<StayCardProps> = ({
     saleOff,
     isAds,
     price,
-    reviewStart,
-    reviewCount,
     id,
   } = data;
 
@@ -56,19 +54,19 @@ const StayCard: FC<StayCardProps> = ({
     return (
       <div className={size === "default" ? "p-4 space-y-4" : "p-3 space-y-2"}>
         <div className="space-y-2">
-          <span className="text-sm text-neutral-500 dark:text-neutral-400">
-            {listingCategory.name} · {bedrooms} beds
-          </span>
           <div className="flex items-center space-x-2">
-            {isAds && <Badge name="ADS" color="green" />}
+            {isAds && <Badge name="REN" color="green" />}
             <h2
-              className={` font-medium capitalize ${
-                size === "default" ? "text-lg" : "text-base"
-              }`}
+              className={` font-medium capitalize ${size === "default" ? "text-lg" : "text-base"
+                }`}
             >
               <span className="line-clamp-1">{title}</span>
             </h2>
           </div>
+          <span className="text-sm text-neutral-500 dark:text-neutral-400">
+            {/* {listingCategory.name} */}
+            Description
+          </span>
           <div className="flex items-center text-neutral-500 dark:text-neutral-400 text-sm space-x-2">
             {size === "default" && (
               <svg
@@ -92,12 +90,54 @@ const StayCard: FC<StayCardProps> = ({
                 />
               </svg>
             )}
-            <span className="">{address}</span>
+            <span className="">
+              {/* {address} */}
+              Agent Id or Name
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-sm font-semibold">
+              {/* {price} */}
+              PLUS VALIA
+              {` `}
+            </span>
+            {size === "default" && (
+              <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal">
+                45%
+              </span>
+            )}
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-sm font-semibold">
+              {/* {price} */}
+              RENTABILIDAD
+              {` `}
+            </span>
+            {size === "default" && (
+              <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal">
+                45%
+              </span>
+            )}
           </div>
         </div>
         <div className="w-14 border-b border-neutral-100 dark:border-neutral-800"></div>
         <div className="flex justify-between items-center">
-          <span className="text-base font-semibold">
+          <span className="text-sm font-semibold">
+            {price}
+            {` `}
+            {size === "default" && (
+              <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal">
+                /month
+              </span>
+            )}
+          </span>
+          <span className="text-sm">
+            Actual Owner
+          </span>
+        </div>
+
+        <div className="flex justify-between items-center">
+          <span className="text-sm font-semibold">
             {price}
             {` `}
             {size === "default" && (
@@ -106,9 +146,10 @@ const StayCard: FC<StayCardProps> = ({
               </span>
             )}
           </span>
-          {!!reviewStart && (
-            <StartRating reviewCount={reviewCount} point={reviewStart} />
-          )}
+          <span className="text-sm">
+            {/* {bedrooms} */}
+            100 m<sup>2</sup>
+          </span>
         </div>
       </div>
     );

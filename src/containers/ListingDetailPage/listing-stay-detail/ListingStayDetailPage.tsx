@@ -44,7 +44,7 @@ const StayDetailPageContainer: FC<{}> = () => {
       <div className="listingSection__wrap !space-y-6">
         {/* 1 */}
         <div className="flex justify-between items-center">
-          <Badge name="Wooden house" />
+          <Badge name="Rental" />
           <LikeSaveBtns />
         </div>
 
@@ -59,12 +59,12 @@ const StayDetailPageContainer: FC<{}> = () => {
           <span>·</span>
           <span>
             <i className="las la-map-marker-alt"></i>
-            <span className="ml-1"> Tokyo, Jappan</span>
+            <span className="ml-1"> Location</span>
           </span>
         </div>
 
         {/* 4 */}
-        <div className="flex items-center">
+        {/* <div className="flex items-center">
           <Avatar hasChecked sizeClass="h-10 w-10" radius="rounded-full" />
           <span className="ml-2.5 text-neutral-500 dark:text-neutral-400">
             Hosted by{" "}
@@ -72,7 +72,7 @@ const StayDetailPageContainer: FC<{}> = () => {
               Kevin Francis
             </span>
           </span>
-        </div>
+        </div> */}
 
         {/* 5 */}
         <div className="w-full border-b border-neutral-100 dark:border-neutral-700" />
@@ -111,7 +111,7 @@ const StayDetailPageContainer: FC<{}> = () => {
   const renderSection2 = () => {
     return (
       <div className="listingSection__wrap">
-        <h2 className="text-2xl font-semibold">Stay information</h2>
+        <h2 className="text-2xl font-semibold">Description</h2>
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
         <div className="text-neutral-6000 dark:text-neutral-300">
           <span>
@@ -284,6 +284,47 @@ const StayDetailPageContainer: FC<{}> = () => {
     );
   };
 
+  const renderSection9 = () => {
+    return (
+      <div className="listingSection__wrap">
+        {/* HEADING */}
+        <div>
+          <h2 className="text-2xl font-semibold">Price </h2>
+        </div>
+        <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+        {/* CONTENT */}
+        <div className="flow-root">
+          <div className="text-sm sm:text-base text-neutral-6000 dark:text-neutral-300 -mb-4">
+            <div className="p-4 flex justify-between items-center space-x-4 rounded-lg">
+              <span>price sale</span>
+              <span>$9000</span>
+            </div>
+            <div className="p-4 bg-neutral-100 dark:bg-neutral-800 flex justify-between items-center space-x-4 rounded-lg">
+              <span>Day Price</span>
+              <span>$199</span>
+            </div>
+            <div className="p-4  flex justify-between items-center space-x-4 rounded-lg">
+              <span>Month Price</span>
+              <span>$199</span>
+            </div>
+            <div className="p-4 bg-neutral-100 dark:bg-neutral-800 flex justify-between items-center space-x-4 rounded-lg">
+              <span>PLUS VALIA</span>
+              <span>45%</span>
+            </div>
+            <div className="p-4 flex justify-between items-center space-x-4 rounded-lg">
+              <span>RENTABILIDAD </span>
+              <span>45%</span>
+            </div>
+            <div className="p-4 bg-neutral-100 dark:bg-neutral-800 flex justify-between items-center space-x-4 rounded-lg">
+              <span>Square Meters</span>
+              <span>100 m<sup>2</sup></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const renderSection5 = () => {
     return (
       <div className="listingSection__wrap">
@@ -445,7 +486,7 @@ const StayDetailPageContainer: FC<{}> = () => {
               loading="lazy"
               allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAGVJfZMAKYfZ71nzL_v5i3LjTTWnCYwTY&q=Eiffel+Tower,Paris+France"
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAGVJfZMAKYfZ71nzL_v5i3LjTTWnCYwTY&q=Eiffel+Tower,Seville+France"
             ></iframe>
           </div>
         </div>
@@ -571,9 +612,8 @@ const StayDetailPageContainer: FC<{}> = () => {
           {PHOTOS.filter((_, i) => i >= 1 && i < 5).map((item, index) => (
             <div
               key={index}
-              className={`relative rounded-md sm:rounded-xl overflow-hidden ${
-                index >= 3 ? "hidden sm:block" : ""
-              }`}
+              className={`relative rounded-md sm:rounded-xl overflow-hidden ${index >= 3 ? "hidden sm:block" : ""
+                }`}
             >
               <div className="aspect-w-4 aspect-h-3 sm:aspect-w-6 sm:aspect-h-5">
                 <img
@@ -610,13 +650,14 @@ const StayDetailPageContainer: FC<{}> = () => {
         <div className="w-full lg:w-3/5 xl:w-2/3 space-y-8 lg:space-y-10 lg:pr-10">
           {renderSection1()}
           {renderSection2()}
-          {renderSection3()}
-          {renderSection4()}
-          <SectionDateRange />
-          {renderSection5()}
+          {/* {renderSection3()} */}
+          {/* {renderSection4()} */}
+          {renderSection9()}
+          {/* <SectionDateRange /> */}
+          {/* {renderSection5()}
           {renderSection6()}
-          {renderSection7()}
-          {renderSection8()}
+          {renderSection7()} */}
+          {/* {renderSection8()} */}
         </div>
 
         {/* SIDEBAR */}

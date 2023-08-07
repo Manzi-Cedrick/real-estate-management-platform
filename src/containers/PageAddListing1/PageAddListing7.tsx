@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import CommonLayout from "./CommonLayout";
 
-export interface PageAddListing7Props {}
+export interface PageAddListing7Props { }
 
 const PageAddListing7: FC<PageAddListing7Props> = () => {
   return (
@@ -52,6 +52,7 @@ const PageAddListing7: FC<PageAddListing7Props> = () => {
                         name="file-upload"
                         type="file"
                         className="sr-only"
+                        onChange={(e) => console.log(e.target.value)}
                       />
                     </label>
                     <p className="pl-1">or drag and drop</p>
@@ -94,6 +95,7 @@ const PageAddListing7: FC<PageAddListing7Props> = () => {
                         name="file-upload-2"
                         type="file"
                         className="sr-only"
+                        onChange={(e) => console.log(e.target.value)}
                       />
                     </label>
                     <p className="pl-1">or drag and drop</p>

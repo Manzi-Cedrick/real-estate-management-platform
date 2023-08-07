@@ -24,7 +24,7 @@ const SectionGridFeaturePlaces: FC<SectionGridFeaturePlacesProps> = ({
   heading = "Featured places to stay",
   subHeading = "Popular places to stay that Chisfis recommends for you",
   headingIsCenter,
-  tabs = ["New York", "Tokyo", "Paris", "London"],
+  tabs = ["New York", "Valencia", "Seville", "Granada"],
 }) => {
   const renderCard = (stay: StayDataType) => {
     return <StayCard key={stay.id} data={stay} />;

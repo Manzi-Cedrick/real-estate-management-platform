@@ -25,7 +25,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "2",
     href: "#",
-    name: "Enjoy the Beauty of Paris",
+    name: "Enjoy the Beauty of Seville",
     taxonomy: "category",
     count: 2118,
     thumbnail:
@@ -45,7 +45,7 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "5",
     href: "#",
-    name: "Enjoy the Beauty of Singapore",
+    name: "Enjoy the Beauty of Barcelona",
     taxonomy: "category",
     count: 188288,
     thumbnail:
@@ -73,7 +73,7 @@ const ListingFlightsPage: FC<ListingFlightsPageProps> = ({
       data-nc-id="ListingFlightsPage"
     >
       <Helmet>
-        <title>Chisfis || Booking React Template</title>
+        <title>Lotus Revenu</title>
       </Helmet>
       <BgGlassmorphism />
 

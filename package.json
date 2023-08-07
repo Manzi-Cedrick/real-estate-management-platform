@@ -7,6 +7,7 @@
     "@glidejs/glide": "^3.6.0",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
+    "@paypal/react-paypal-js": "^8.1.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
@@ -20,9 +21,12 @@
     "@types/react": "^18.0.28",
     "@types/react-datepicker": "^4.10.0",
     "@types/react-dom": "^18.0.11",
+    "firebase": "^10.1.0",
     "framer-motion": "^10.0.1",
     "google-map-react": "^2.2.0",
+    "http": "^0.0.1-security",
     "lodash": "^4.17.21",
+    "paypal-rest-sdk": "^1.8.1",
     "rc-slider": "^10.1.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.10.0",
@@ -32,6 +36,7 @@
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "react-swipeable": "^7.0.0",
+    "react-toastify": "^9.1.3",
     "react-use": "^17.4.0",
     "react-use-keypress": "^1.3.1",
     "sass": "^1.58.3",
@@ -69,11 +74,16 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.22.10",
+    "@babel/preset-env": "^7.22.10",
     "@types/glidejs__glide": "^3.6.1",
     "@types/google-map-react": "^2.1.2",
+    "@types/paypal-rest-sdk": "^1.7.6",
     "@types/react-dates": "^21.8.3",
     "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.3",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.2.7",
+    "webpack": "^5.88.2"
   }
 }

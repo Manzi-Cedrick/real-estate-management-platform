@@ -20,8 +20,8 @@ const PageAbout: FC<PageAboutProps> = ({ className = "" }) => {
       data-nc-id="PageAbout"
     >
       <Helmet>
-        <title>About || Booking React Template</title>
-      </Helmet>
+      <title>Lotus Revenu</title>
+            </Helmet>
 
       {/* ======== BG GLASS ======== */}
       <BgGlassmorphism />

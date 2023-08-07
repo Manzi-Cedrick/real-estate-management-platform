@@ -46,6 +46,7 @@ import PageHome3 from "containers/PageHome/PageHome3";
 import ListingStayDetailPage from "containers/ListingDetailPage/listing-stay-detail/ListingStayDetailPage";
 import ListingCarDetailPage from "containers/ListingDetailPage/listing-car-detail/ListingCarDetailPage";
 import ListingExperiencesDetailPage from "containers/ListingDetailPage/listing-experiences-detail/ListingExperiencesDetailPage";
+import Protected from "./Protected";
 
 export const pages: Page[] = [
   { path: "/", exact: true, component: PageHome },
@@ -126,6 +127,7 @@ const MyRoutes = () => {
         {pages.map(({ component, path }) => {
           const Component = component;
           return <Route key={path} element={<Component />} path={path} />;
+
         })}
         <Route element={<Page404 />} />
       </Routes>

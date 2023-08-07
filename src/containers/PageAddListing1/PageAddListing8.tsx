@@ -1,12 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Input from "shared/Input/Input";
 import Select from "shared/Select/Select";
 import CommonLayout from "./CommonLayout";
 import FormItem from "./FormItem";
 
-export interface PageAddListing8Props {}
+export interface PageAddListing8Props { }
 
 const PageAddListing8: FC<PageAddListing8Props> = () => {
+  const [currency, setCurrency] = useState<any>();
+  const [pricecMonday, setPricecMonday] = useState<string>();
+  const [pricecFriday, setPricecFriday] = useState<string>();
+  const [pricecMonthly, setPricecMonthly] = useState<string>();
+
   return (
     <CommonLayout
       index="08"
@@ -27,7 +32,7 @@ const PageAddListing8: FC<PageAddListing8Props> = () => {
         <div className="space-y-8">
           {/* ITEM */}
           <FormItem label="Currency">
-            <Select>
+            <Select onChange={(e) => { setCurrency(e.target.value); console.log(e.target.value) }}>
               <option value="USD">USD</option>
               <option value="VND">VND</option>
               <option value="EURRO">EURRO</option>
@@ -38,7 +43,7 @@ const PageAddListing8: FC<PageAddListing8Props> = () => {
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <span className="text-gray-500">$</span>
               </div>
-              <Input className="!pl-8 !pr-10" placeholder="0.00" />
+              <Input className="!pl-8 !pr-10" placeholder="0.00" onChange={(e) => { setPricecMonday(e.target.value); console.log(e.target.value) }} />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                 <span className="text-gray-500">USD</span>
               </div>
@@ -50,7 +55,7 @@ const PageAddListing8: FC<PageAddListing8Props> = () => {
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <span className="text-gray-500">$</span>
               </div>
-              <Input className="!pl-8 !pr-10" placeholder="0.00" />
+              <Input className="!pl-8 !pr-10" placeholder="0.00" onChange={(e) => { setPricecFriday(e.target.value); console.log(e.target.value) }} />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                 <span className="text-gray-500">USD</span>
               </div>
@@ -62,7 +67,7 @@ const PageAddListing8: FC<PageAddListing8Props> = () => {
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <span className="text-gray-500">%</span>
               </div>
-              <Input className="!pl-8 !pr-10" placeholder="0.00" />
+              <Input className="!pl-8 !pr-10" placeholder="0.00" onChange={(e) => { setPricecMonthly(e.target.value); console.log(e.target.value) }} />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                 <span className="text-gray-500">every month</span>
               </div>
