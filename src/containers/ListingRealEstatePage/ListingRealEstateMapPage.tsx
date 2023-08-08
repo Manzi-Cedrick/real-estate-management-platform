@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect,useState } from "react";
 import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import SectionGridAuthorBox from "components/SectionGridAuthorBox/SectionGridAuthorBox";
 import SectionSliderNewCategories from "components/SectionSliderNewCategories/SectionSliderNewCategories";
@@ -14,6 +14,7 @@ export interface ListingRealEstateMapPageProps {
 const ListingRealEstateMapPage: FC<ListingRealEstateMapPageProps> = ({
   className = "",
 }) => {
+  const [params, setparams] = useState<{ [key: string]: any }>({})
   useEffect(() => {
     const $body = document.querySelector("body");
     if ($body) {
@@ -34,12 +35,18 @@ const ListingRealEstateMapPage: FC<ListingRealEstateMapPageProps> = ({
 
       {/* SECTION HERO */}
       <div className="container pb-24 lg:pb-28">
-        <SectionHero2ArchivePage className="" />
+        <SectionHero2ArchivePage
+          onSearch={(value) => {
+            console.log("works")
+            setparams(value)
+          }}
+          className=""
+        />
       </div>
 
       {/* SECTION */}
       <div className="container pb-24 lg:pb-28 2xl:pl-10 xl:pr-0 xl:max-w-none">
-        <SectionGridHasMap />
+        <SectionGridHasMap params={params} />
       </div>
 
       <div className="container overflow-hidden">

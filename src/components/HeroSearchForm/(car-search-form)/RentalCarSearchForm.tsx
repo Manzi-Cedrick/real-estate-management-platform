@@ -45,6 +45,10 @@ const RentalCarSearchForm: FC<RentalCarSearchFormProps> = () => {
       {renderRadioBtn()}
       <div className={`relative flex flex-row`}>
         <LocationInput
+          searchFunction={() => {}}
+          searchKey={(newValue) => {
+            // Handle the value change here, if needed
+          }}
           placeHolder="City or Airport"
           desc="Pick up location"
           className="flex-1"
@@ -53,6 +57,10 @@ const RentalCarSearchForm: FC<RentalCarSearchFormProps> = () => {
           <>
             <div className="self-center border-r border-slate-200 dark:border-slate-700 h-8"></div>
             <LocationInput
+              searchFunction={() => {}}
+              searchKey={(newValue) => {
+                // Handle the value change here, if needed
+              }}
               placeHolder="City or Airport"
               desc="Drop off location"
               className="flex-1"

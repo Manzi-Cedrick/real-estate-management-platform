@@ -2,7 +2,7 @@ import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import SectionSliderNewCategories from "components/SectionSliderNewCategories/SectionSliderNewCategories";
 import SectionSubscribe2 from "components/SectionSubscribe2/SectionSubscribe2";
 import { TaxonomyType } from "data/types";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect,useState } from "react";
 import SectionGridFilterCard from "./SectionGridFilterCard";
 import { Helmet } from "react-helmet";
 import SectionHero2ArchivePage from "components/SectionHero2ArchivePage/SectionHero2ArchivePage";
@@ -67,6 +67,7 @@ const DEMO_CATS: TaxonomyType[] = [
 const ListingRealEstatePage: FC<ListingRealEstatePageProps> = ({
   className = "",
 }) => {
+  const [params, setparams] = useState<{ [key: string]: any }>({});
   useEffect(() => {
     const $body = document.querySelector("body");
     if ($body) {
@@ -90,10 +91,15 @@ const ListingRealEstatePage: FC<ListingRealEstatePageProps> = ({
 
       <div className="container relative">
         {/* SECTION HERO */}
-        <SectionHero2ArchivePage className="" />
+        <SectionHero2ArchivePage
+          onSearch={(values) => {
+            setparams(values);
+          }}
+          className=""
+        />
 
         {/* SECTION */}
-        <SectionGridFilterCard className="py-24 lg:py-28" />
+        <SectionGridFilterCard  className="py-24 lg:py-28" />
 
         {/* SECTION 1 */}
         <div className="relative py-16">

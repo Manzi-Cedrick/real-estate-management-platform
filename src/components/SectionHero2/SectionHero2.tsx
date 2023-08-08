@@ -34,7 +34,11 @@ const SectionHero2: FC<SectionHero2Props> = ({ className = "", children }) => {
           </div>
         </div>
         <div className="hidden lg:block lg:mt-20 w-full">
-          <HeroRealEstateSearchForm />
+          <HeroRealEstateSearchForm
+            onSearch={(params) => {
+            
+            }}
+          />
         </div>
       </div>
     </div>

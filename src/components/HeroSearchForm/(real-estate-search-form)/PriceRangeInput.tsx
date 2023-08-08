@@ -1,21 +1,28 @@
 import React, { Fragment, useState, FC } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import Slider from "rc-slider";
-import ButtonSubmit from "../ButtonSubmit";
+import SearchButton from "./SearchButton";
 import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
 import convertNumbThousand from "utils/convertNumbThousand";
-
+import DEMO_propertylist from "../../../data/jsons/__stayListing.json";
 export interface PriceRangeInputProps {
   onChange?: (data: any) => void;
   fieldClassName?: string;
+  searchKey?: string;
+  priceRange: (price: Array<number>) => void;
+  searchFunction: (bool: boolean) => void;
 }
 
 const PriceRangeInput: FC<PriceRangeInputProps> = ({
   onChange,
   fieldClassName = "[ nc-hero-field-padding ]",
+  priceRange,
+  searchFunction,
 }) => {
   const [rangePrices, setRangePrices] = useState([100000, 4000000]);
-
+  const handleSearch = () => {
+    searchFunction(true);
+  };
   return (
     <Popover className="flex relative flex-[1.3]">
       {({ open, close }) => (
@@ -45,8 +52,8 @@ const PriceRangeInput: FC<PriceRangeInputProps> = ({
             </Popover.Button>
 
             {/* BUTTON SUBMIT OF FORM */}
-            <div className="pr-2 xl:pr-4">
-              <ButtonSubmit href="/listing-real-estate" />
+            <div className="pr-2 xl:pr-4" onClick={handleSearch}>
+              <SearchButton />
             </div>
           </div>
 
@@ -75,7 +82,10 @@ const PriceRangeInput: FC<PriceRangeInputProps> = ({
                     defaultValue={[rangePrices[0], rangePrices[1]]}
                     allowCross={false}
                     step={1000}
-                    onChange={(e) => setRangePrices(e as number[])}
+                    onChange={(e) => {
+                      priceRange(e as number[]);
+                      setRangePrices(e as number[]);
+                    }}
                   />
                 </div>
 

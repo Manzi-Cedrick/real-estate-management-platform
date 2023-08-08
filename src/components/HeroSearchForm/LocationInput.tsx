@@ -10,6 +10,8 @@ export interface LocationInputProps {
   className?: string;
   divHideVerticalLineClass?: string;
   autoFocus?: boolean;
+  searchKey: (locationSearch: string) => void;
+  searchFunction: (bool: boolean) => void;
 }
 
 const LocationInput: FC<LocationInputProps> = ({
@@ -18,6 +20,8 @@ const LocationInput: FC<LocationInputProps> = ({
   desc = "Where are you going?",
   className = "nc-flex-1.5",
   divHideVerticalLineClass = "left-10 -right-0.5",
+  searchKey,
+  searchFunction,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -57,6 +61,7 @@ const LocationInput: FC<LocationInputProps> = ({
   };
 
   const handleSelectLocation = (item: string) => {
+    searchKey(item);
     setValue(item);
     setShowPopover(false);
   };
@@ -135,8 +140,17 @@ const LocationInput: FC<LocationInputProps> = ({
             placeholder={placeHolder}
             value={value}
             autoFocus={showPopover}
+            onKeyDown={(e) => {
+              const code = e.keyCode || 5;
+              if (code === 13) {
+                e.preventDefault();
+                console.log("nope");
+                searchFunction(true);
+              }
+            }}
             onChange={(e) => {
               setValue(e.currentTarget.value);
+              searchKey(e.currentTarget.value);
             }}
             ref={inputRef}
           />

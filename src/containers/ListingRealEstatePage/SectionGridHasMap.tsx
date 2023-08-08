@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import AnyReactComponent from "components/AnyReactComponent/AnyReactComponent";
 import GoogleMapReact from "google-map-react";
 import { DEMO_STAY_LISTINGS } from "data/listings";
@@ -8,12 +8,34 @@ import Pagination from "shared/Pagination/Pagination";
 import TabFilters from "./TabFilters";
 import Heading2 from "components/Heading/Heading2";
 import PropertyCardH from "components/PropertyCardH/PropertyCardH";
-
+import PropertyListings from "../../data/jsons/__stayListing.json";
 const DEMO_EXPERIENCES = DEMO_STAY_LISTINGS.filter((_, i) => i < 12);
-
-const SectionGridHasMap: FC<{}> = () => {
+interface SectionGridHasMapProps {
+  params?: { [key: string]: any };
+}
+const SectionGridHasMap: FC<SectionGridHasMapProps> = ({ params }) => {
   const [currentHoverID, setCurrentHoverID] = useState<string | number>(-1);
   const [showFullMapFixed, setShowFullMapFixed] = useState(false);
+  const [response, setresponse] = useState<any[]>([]);
+
+  useEffect(() => {
+    const results = PropertyListings.filter((items) => {
+      if (params && params.location) {
+        if (
+          items.address.toLowerCase().includes(params.location.toLowerCase()) ||
+          items.title.toLowerCase().includes(params.location.toLowerCase())
+        ) {
+          console.log(items);
+          return items;
+        } else {
+          console.log("none");
+          setresponse(["NONE"]);
+        }
+      }
+    });
+    results.length === 0 ? setresponse(["NONE"]) : setresponse(results);
+  }, [params]);
+  console.log(response);
 
   return (
     <div>
@@ -35,15 +57,29 @@ const SectionGridHasMap: FC<{}> = () => {
             <TabFilters />
           </div>
           <div className="grid grid-cols-1 gap-8">
-            {DEMO_EXPERIENCES.map((item) => (
-              <div
-                key={item.id}
-                onMouseEnter={() => setCurrentHoverID((_) => item.id)}
-                onMouseLeave={() => setCurrentHoverID((_) => -1)}
-              >
-                <PropertyCardH data={item} />
-              </div>
-            ))}
+            {response.length > 0
+              ? response.map((item) =>
+                  item === "NONE" ? (
+                    <h1 className="font-bold text-2xl">NO RESULTS FOUND!!!!</h1>
+                  ) : (
+                    <div
+                      key={item.id}
+                      onMouseEnter={() => setCurrentHoverID((_) => item.id)}
+                      onMouseLeave={() => setCurrentHoverID((_) => -1)}
+                    >
+                      <PropertyCardH data={item} />
+                    </div>
+                  )
+                )
+              : DEMO_EXPERIENCES.map((item) => (
+                  <div
+                    key={item.id}
+                    onMouseEnter={() => setCurrentHoverID((_) => item.id)}
+                    onMouseLeave={() => setCurrentHoverID((_) => -1)}
+                  >
+                    <PropertyCardH data={item} />
+                  </div>
+                ))}
           </div>
           <div className="flex mt-16 justify-center items-center">
             <Pagination />
