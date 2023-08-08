@@ -5,11 +5,13 @@ import HeroRealEstateSearchForm from "components/HeroSearchForm/(real-estate-sea
 export interface SectionHero2ArchivePageProps {
   className?: string;
   children?: React.ReactNode;
+  onSearch: (params: object) => void;
 }
 
 const SectionHero2ArchivePage: FC<SectionHero2ArchivePageProps> = ({
   className = "",
   children,
+  onSearch
 }) => {
   return (
     <div
@@ -40,7 +42,11 @@ const SectionHero2ArchivePage: FC<SectionHero2ArchivePageProps> = ({
           </div>
         </div>
         <div className="hidden lg:block mt-10 w-full">
-          <HeroRealEstateSearchForm />
+          <HeroRealEstateSearchForm
+            onSearch={(params) => {
+              onSearch(params);
+            }}
+          />
         </div>
       </div>
     </div>

@@ -8,11 +8,13 @@ export type SearchRealEstateTab = "Buy" | "Rent" | "Sell";
 export interface HeroRealEstateSearchFormProps {
   className?: string;
   currentTab?: SearchRealEstateTab;
+  onSearch: (params: object) => void;
 }
 
 const HeroRealEstateSearchForm: FC<HeroRealEstateSearchFormProps> = ({
   className = "",
   currentTab = "Buy",
+   onSearch,
 }) => {
   const tabs: SearchRealEstateTab[] = ["Buy", "Rent", "Sell"];
   const [tabActive, setTabActive] = useState<SearchRealEstateTab>(currentTab);
@@ -46,10 +48,23 @@ const HeroRealEstateSearchForm: FC<HeroRealEstateSearchFormProps> = ({
   const renderForm = () => {
     switch (tabActive) {
       case "Buy":
-        return <RealEstateSearchForm />;
+        return (
+          <RealEstateSearchForm
+            onSearch={(params) => {
+             
+              onSearch(params)
+            }}
+          />
+        );
 
       default:
-        return <RealEstateSearchForm />;
+        return (
+          <RealEstateSearchForm
+            onSearch={(params) => {
+               onSearch(params);
+            }}
+          />
+        );
     }
   };
 

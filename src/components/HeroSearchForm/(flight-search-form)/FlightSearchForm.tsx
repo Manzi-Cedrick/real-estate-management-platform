@@ -219,12 +219,20 @@ const FlightSearchForm: FC<FlightSearchFormProps> = () => {
         {renderRadioBtn()}
         <div className="flex flex-1 rounded-full">
           <LocationInput
+            searchFunction={() => {}}
+            searchKey={(newValue) => {
+              // Handle the value change here, if needed
+            }}
             placeHolder="Flying from"
             desc="Where do you want to fly from?"
             className="flex-1"
           />
           <div className="self-center border-r border-slate-200 dark:border-slate-700 h-8"></div>
           <LocationInput
+            searchFunction={() => {}}
+            searchKey={(newValue) => {
+              // Handle the value change here, if needed
+            }}
             placeHolder="Flying to"
             desc="Where you want to fly to?"
             className="flex-1"

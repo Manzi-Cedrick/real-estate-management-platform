@@ -1,4 +1,4 @@
-import React, { Fragment, FC } from "react";
+import React, { Fragment, FC, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { HomeIcon } from "@heroicons/react/24/outline";
 import { ClassOfProperties } from "../type";
@@ -31,14 +31,17 @@ const defaultPropertyType: ClassOfProperties[] = [
 export interface PropertyTypeSelectProps {
   onChange?: (data: any) => void;
   fieldClassName?: string;
+  propertyType: (type: Array<any>) => void;
 }
 
 const PropertyTypeSelect: FC<PropertyTypeSelectProps> = ({
   onChange,
   fieldClassName = "[ nc-hero-field-padding ]",
+  propertyType,
 }) => {
   const [typeOfProperty, setTypeOfProperty] =
     React.useState<ClassOfProperties[]>(defaultPropertyType);
+  const [types, settypes] = useState<string[]>([]);
 
   let typeOfPropertyText = "";
   if (typeOfProperty && typeOfProperty.length > 0) {
@@ -100,13 +103,18 @@ const PropertyTypeSelect: FC<PropertyTypeSelectProps> = ({
                         onChange={(e) => {
                           const newState = typeOfProperty.map((item, i) => {
                             if (i === index) {
+                              if (item.checked) {
+                                settypes((prev) => [...prev, item.name]);
+                              }
                               return { ...item, checked: e };
                             }
                             return item;
                           });
+                          propertyType(types);
                           setTypeOfProperty(() => {
                             return newState;
                           });
+
                           onChange && onChange(newState);
                         }}
                       />

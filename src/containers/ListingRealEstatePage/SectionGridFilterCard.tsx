@@ -6,9 +6,11 @@ import TabFilters from "./TabFilters";
 import Heading2 from "components/Heading/Heading2";
 import PropertyCardH from "components/PropertyCardH/PropertyCardH";
 
+
 export interface SectionGridFilterCardProps {
   className?: string;
   data?: StayDataType[];
+  
 }
 
 const DEMO_DATA: StayDataType[] = DEMO_STAY_LISTINGS.filter((_, i) => i < 8);
@@ -17,6 +19,7 @@ const SectionGridFilterCard: FC<SectionGridFilterCardProps> = ({
   className = "",
   data = DEMO_DATA,
 }) => {
+  
   return (
     <div
       className={`nc-SectionGridFilterCard ${className}`}
