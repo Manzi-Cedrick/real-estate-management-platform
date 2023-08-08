@@ -19,8 +19,8 @@ const SectionGridHasMap: FC<SectionGridHasMapProps> = ({ params }) => {
   const [response, setresponse] = useState<any[]>([]);
 
   useEffect(() => {
-    const results = PropertyListings.filter((items) => {
-      if (params && params.location) {
+    if (params && params.location && params.location.length > 2) {
+      const results = PropertyListings.filter((items) => {
         if (
           items.address.toLowerCase().includes(params.location.toLowerCase()) ||
           items.title.toLowerCase().includes(params.location.toLowerCase())
@@ -31,9 +31,9 @@ const SectionGridHasMap: FC<SectionGridHasMapProps> = ({ params }) => {
           console.log("none");
           setresponse(["NONE"]);
         }
-      }
-    });
-    results.length === 0 ? setresponse(["NONE"]) : setresponse(results);
+      });
+      results.length === 0 ? setresponse(["NONE"]) : setresponse(results);
+    }
   }, [params]);
   console.log(response);
 
