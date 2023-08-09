@@ -1,13 +1,16 @@
 import { Dialog, Tab, Transition } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import React, { Fragment, useState } from "react";
+import React, { FC,Fragment, useState } from "react";
 import ButtonSubmit from "./ButtonSubmit";
 import { useTimeoutFn } from "react-use";
 import RealestateSearchForm from "./(real-estate-search-form)/RealestateSearchForm";
-
-const HeroSearchForm2RealEstateMobile = () => {
+interface HeroSearchForm2RealEstateMobileProps {
+  onSearch: (params: object) => void;
+}
+const HeroSearchForm2RealEstateMobile:FC<HeroSearchForm2RealEstateMobileProps> = ({onSearch}) => {
   const [showModal, setShowModal] = useState(false);
+  const [params, setparams] = useState({});
 
   // FOR RESET ALL DATA WHEN CLICK CLEAR BUTTON
   const [showDialog, setShowDialog] = useState(false);
@@ -105,17 +108,29 @@ const HeroSearchForm2RealEstateMobile = () => {
                         <Tab.Panels className="flex-1 overflow-y-auto hiddenScrollbar py-4">
                           <Tab.Panel>
                             <div className="transition-opacity animate-[myblur_0.4s_ease-in-out]">
-                              <RealestateSearchForm />
+                              <RealestateSearchForm
+                                onSearch={(value) => {
+                                  setparams(value);
+                                }}
+                              />
                             </div>
                           </Tab.Panel>
                           <Tab.Panel>
                             <div className="transition-opacity animate-[myblur_0.4s_ease-in-out]">
-                              <RealestateSearchForm />
+                              <RealestateSearchForm
+                                onSearch={(value) => {
+                                  setparams(value);
+                                }}
+                              />
                             </div>
                           </Tab.Panel>
                           <Tab.Panel>
                             <div className="transition-opacity animate-[myblur_0.4s_ease-in-out]">
-                              <RealestateSearchForm />
+                              <RealestateSearchForm
+                                onSearch={(value) => {
+                                  setparams(value);
+                                }}
+                              />
                             </div>
                           </Tab.Panel>
                         </Tab.Panels>
@@ -134,6 +149,7 @@ const HeroSearchForm2RealEstateMobile = () => {
                         <ButtonSubmit
                           onClick={() => {
                             closeModal();
+                            onSearch(params)
                           }}
                         />
                       </div>

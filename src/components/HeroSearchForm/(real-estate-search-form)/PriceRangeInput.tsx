@@ -4,7 +4,7 @@ import Slider from "rc-slider";
 import SearchButton from "./SearchButton";
 import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
 import convertNumbThousand from "utils/convertNumbThousand";
-import DEMO_propertylist from "../../../data/jsons/__stayListing.json";
+
 export interface PriceRangeInputProps {
   onChange?: (data: any) => void;
   fieldClassName?: string;

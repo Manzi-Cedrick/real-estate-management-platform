@@ -39,7 +39,8 @@ const CarsSearchForm = () => {
           </button>
         ) : (
           <LocationInput
-          
+            searchKey={(key) => {}}
+            searchFunction={(bool) => {}}
             headingText="Pick up?"
             defaultValue={locationInputPickUp}
             onChange={(value) => {
@@ -76,6 +77,8 @@ const CarsSearchForm = () => {
           </button>
         ) : (
           <LocationInput
+            searchKey={(key) => {}}
+            searchFunction={(bool) => {}}
             headingText="Drop off?"
             defaultValue={locationInputDropOff}
             onChange={(value) => {

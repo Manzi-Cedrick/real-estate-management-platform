@@ -6,11 +6,14 @@ import convertNumbThousand from "utils/convertNumbThousand";
 export interface PriceRangeInputProps {
   onChange?: (e: number[]) => void;
   defaultValue?: number[];
+  priceRange: (price: Array<number>) => void;
+
 }
 
 const PriceRangeInput: FC<PriceRangeInputProps> = ({
   onChange,
   defaultValue,
+  priceRange,
 }) => {
   const [rangePrices, setRangePrices] = useState(
     defaultValue || [100000, 4000000]
@@ -18,6 +21,7 @@ const PriceRangeInput: FC<PriceRangeInputProps> = ({
 
   useEffect(() => {
     if (!defaultValue) return;
+    priceRange(defaultValue);
     setRangePrices(defaultValue);
   }, [defaultValue]);
 
