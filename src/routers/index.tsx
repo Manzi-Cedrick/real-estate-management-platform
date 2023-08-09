@@ -46,9 +46,10 @@ import PageHome3 from "containers/PageHome/PageHome3";
 import ListingStayDetailPage from "containers/ListingDetailPage/listing-stay-detail/ListingStayDetailPage";
 import ListingCarDetailPage from "containers/ListingDetailPage/listing-car-detail/ListingCarDetailPage";
 import ListingExperiencesDetailPage from "containers/ListingDetailPage/listing-experiences-detail/ListingExperiencesDetailPage";
+import DashboardPage from "containers/dashboard/DashboardPage";
 import Protected from "./Protected";
 
-export const pages: Page[] = [
+const pages: Page[] = [
   { path: "/", exact: true, component: PageHome },
   { path: "/#", exact: true, component: PageHome },
   { path: "/home-1-header-2", exact: true, component: PageHome },
@@ -111,8 +112,21 @@ export const pages: Page[] = [
   { path: "/subscription", component: PageSubcription },
   //
 ];
-
-const MyRoutes = () => {
+const protectedPages = [{ path: "/auth/dashboard", component: DashboardPage }];
+export const ProtectedRoutes = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {protectedPages.map(({ component, path }) => {
+          const Component = component;
+          return <Route key={path} element={<Component />} path={path} />;
+        })}
+        <Route element={<Page404 />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+export const MyRoutes = () => {
   let WIN_WIDTH = useWindowSize().width;
   if (typeof window !== "undefined") {
     WIN_WIDTH = WIN_WIDTH || window.innerWidth;
@@ -122,12 +136,10 @@ const MyRoutes = () => {
     <BrowserRouter>
       <ScrollToTop />
       <SiteHeader />
-
       <Routes>
         {pages.map(({ component, path }) => {
           const Component = component;
           return <Route key={path} element={<Component />} path={path} />;
-
         })}
         <Route element={<Page404 />} />
       </Routes>
@@ -137,5 +149,3 @@ const MyRoutes = () => {
     </BrowserRouter>
   );
 };
-
-export default MyRoutes;
