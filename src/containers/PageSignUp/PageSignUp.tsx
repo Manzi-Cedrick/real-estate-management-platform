@@ -39,7 +39,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
             uid: user.uid,
             email: user.email,
           });
-          window.location.href = "/auth/dashboard";
+          navigate("/auth/dashboard");
         })
         .catch((error) => {
           if (error.code == "auth/weak-password")
@@ -57,7 +57,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setLoading(false);
-        window.location.href = "/auth/dashboard";
+        navigate("/auth/dashboard");
       } else {
         const data = {
           userId: user.uid,
@@ -65,7 +65,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
         };
         await setDoc(doc(db, "Users", user.uid), data);
         setLoading(false);
-        window.location.href = "/auth/dashboard";
+        navigate("/auth/dashboard");
       }
     }
     if (user && user.uid) {

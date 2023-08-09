@@ -111,9 +111,10 @@ const pages: Page[] = [
   { path: "/signup", component: PageSignUp },
   { path: "/login", component: PageLogin },
   { path: "/subscription", component: PageSubcription },
+  { path: "/auth/dashboard", component: DashboardPage },
   //
 ];
-const protectedPages = [{ path: "/auth/dashboard", component: DashboardPage }];
+
 
 const MyRoutes = () => {
   let WIN_WIDTH = useWindowSize().width;
@@ -130,14 +131,6 @@ const MyRoutes = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Routes>
-        {protectedPages.map(({ component, path }) => {
-          const Component = component;
-          return <Route key={path} element={<Component />} path={path} />;
-        })}
-        <Route element={<Page404 />} />
-      </Routes>
-      {/* //others */}
 
       {!isAuthRoute ? <SiteHeader /> : <></>}
       <Routes>
