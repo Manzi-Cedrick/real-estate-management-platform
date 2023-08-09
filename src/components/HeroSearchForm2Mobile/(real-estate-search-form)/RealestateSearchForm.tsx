@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, FC, useEffect } from "react";
 import LocationInput from "../LocationInput";
 import PriceRangeInput from "./PriceRangeInput";
 import PropertyTypeSelect from "./PropertyTypeSelect";
 import { ClassOfProperties } from "components/HeroSearchForm/type";
 import convertNumbThousand from "utils/convertNumbThousand";
-
-const RealestateSearchForm = () => {
-  //
+interface RealestateSearchFormProps {
+  onSearch: (params: object) => void;
+}
+const RealestateSearchForm: FC<RealestateSearchFormProps> = ({ onSearch }) => {
+  const [query, setquery] = useState({
+    location: "",
+    type: [] as string[],
+    price: [] as number[],
+  });
   const [fieldNameShow, setFieldNameShow] = useState<
     "location" | "propertyType" | "price"
   >("location");
-  //
+
   const [locationInputTo, setLocationInputTo] = useState("");
   const [rangePrices, setRangePrices] = useState([100000, 4000000]);
   const [typeOfProperty, setTypeOfProperty] = useState<ClassOfProperties[]>([
@@ -36,6 +42,7 @@ const RealestateSearchForm = () => {
       checked: false,
     },
   ]);
+  
 
   const renderInputLocation = () => {
     const isActive = fieldNameShow === "location";
@@ -57,6 +64,14 @@ const RealestateSearchForm = () => {
           </button>
         ) : (
           <LocationInput
+            searchKey={(searchLocation) => {
+              console.log(searchLocation);
+              setquery((prev) => ({ ...prev, location: searchLocation }));
+              onSearch(query)
+            }}
+            searchFunction={(bool) => {
+              onSearch(query);
+            }}
             headingText="Where to find?"
             defaultValue={locationInputTo}
             onChange={(value) => {
@@ -135,6 +150,11 @@ const RealestateSearchForm = () => {
           </button>
         ) : (
           <PriceRangeInput
+            priceRange={(pricenums) => {
+              
+              setquery((prev) => ({ ...prev, price: pricenums }));
+              onSearch(query);
+            }}
             defaultValue={rangePrices}
             onChange={setRangePrices}
           />

@@ -41,6 +41,8 @@ const StaySearchForm = () => {
           </button>
         ) : (
           <LocationInput
+            searchKey={(key) => {}}
+            searchFunction={(bool) => {}}
             defaultValue={locationInputTo}
             onChange={(value) => {
               setLocationInputTo(value);

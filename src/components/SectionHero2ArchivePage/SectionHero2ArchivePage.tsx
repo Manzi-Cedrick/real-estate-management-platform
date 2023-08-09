@@ -11,7 +11,7 @@ export interface SectionHero2ArchivePageProps {
 const SectionHero2ArchivePage: FC<SectionHero2ArchivePageProps> = ({
   className = "",
   children,
-  onSearch
+  onSearch,
 }) => {
   return (
     <div
@@ -44,6 +44,7 @@ const SectionHero2ArchivePage: FC<SectionHero2ArchivePageProps> = ({
         <div className="hidden lg:block mt-10 w-full">
           <HeroRealEstateSearchForm
             onSearch={(params) => {
+              console.log(params);
               onSearch(params);
             }}
           />

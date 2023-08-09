@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useContext } from "react";
 import AnyReactComponent from "components/AnyReactComponent/AnyReactComponent";
 import GoogleMapReact from "google-map-react";
 import { DEMO_STAY_LISTINGS } from "data/listings";
@@ -9,6 +9,7 @@ import TabFilters from "./TabFilters";
 import Heading2 from "components/Heading/Heading2";
 import PropertyCardH from "components/PropertyCardH/PropertyCardH";
 import PropertyListings from "../../data/jsons/__stayListing.json";
+import { useSearchParams } from "../../contexts/search";
 const DEMO_EXPERIENCES = DEMO_STAY_LISTINGS.filter((_, i) => i < 12);
 interface SectionGridHasMapProps {
   params?: { [key: string]: any };
@@ -17,25 +18,38 @@ const SectionGridHasMap: FC<SectionGridHasMapProps> = ({ params }) => {
   const [currentHoverID, setCurrentHoverID] = useState<string | number>(-1);
   const [showFullMapFixed, setShowFullMapFixed] = useState(false);
   const [response, setresponse] = useState<any[]>([]);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const results = PropertyListings.filter((items) => {
-      if (params && params.location) {
+    const contextparams = searchParams.searchParams;
+    console.log(contextparams, "fil______");
+    let middlelayer: any;
+    if (contextparams.location && contextparams.location.length > 0) {
+      middlelayer = contextparams;
+    } else {
+      middlelayer = params;
+    }
+    if (
+      middlelayer &&
+      middlelayer.location &&
+      middlelayer.location.length > 2
+    ) {
+      const results = PropertyListings.filter((items) => {
         if (
-          items.address.toLowerCase().includes(params.location.toLowerCase()) ||
-          items.title.toLowerCase().includes(params.location.toLowerCase())
+          items.address
+            .toLowerCase()
+            .includes(middlelayer.location.toLowerCase()) ||
+          items.title.toLowerCase().includes(middlelayer.location.toLowerCase())
         ) {
           console.log(items);
           return items;
         } else {
-          console.log("none");
           setresponse(["NONE"]);
         }
-      }
-    });
-    results.length === 0 ? setresponse(["NONE"]) : setresponse(results);
-  }, [params]);
-  console.log(response);
+      });
+      results.length === 0 ? setresponse(["NONE"]) : setresponse(results);
+    }
+  }, [params,searchParams]);
 
   return (
     <div>

@@ -47,6 +47,8 @@ const FlightSearchForm = () => {
           </button>
         ) : (
           <LocationInput
+            searchKey={(key) => {}}
+            searchFunction={(bool) => {}}
             headingText="Pick up?"
             defaultValue={locationInputPickUp}
             onChange={(value) => {
@@ -79,6 +81,8 @@ const FlightSearchForm = () => {
           </button>
         ) : (
           <LocationInput
+            searchKey={(key) => {}}
+            searchFunction={(bool) => {}}
             headingText="Drop off?"
             defaultValue={locationInputDropOff}
             onChange={(value) => {
