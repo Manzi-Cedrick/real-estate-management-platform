@@ -125,7 +125,7 @@ const MyRoutes = () => {
   useEffect(() => {
    
     setIsAuthRoute(window.location.pathname.includes("auth"));
-  },[window.location]);
+  },[]);
 
   return (
     <BrowserRouter>
