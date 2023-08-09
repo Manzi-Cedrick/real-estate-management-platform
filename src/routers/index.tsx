@@ -136,7 +136,7 @@ const MyRoutes = () => {
           const Component = component;
           return <Route key={path} element={<Component />} path={path} />;
         })}
-        <Route element={<Page404 />} />
+        <Route path="/*" element={<Page404 />} />
       </Routes>
       {!isAuthRoute ? <Footer /> : <></>}
 
