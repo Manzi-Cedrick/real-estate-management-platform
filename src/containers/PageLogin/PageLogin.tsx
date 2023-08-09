@@ -40,7 +40,7 @@ const PageLogin: FC<PageLoginProps> = ({ className = "" }) => {
         };
         await setDoc(doc(db, "Users", user.uid), data);
         setLoading(false);
-        window.location.href = "/auth/dashboard";
+        window.location.href = "/dashboard";
       }
     };
     if (user && user.uid) {
@@ -48,12 +48,12 @@ const PageLogin: FC<PageLoginProps> = ({ className = "" }) => {
     }
   }, [user]);
 
-  const emailSignIn =async() => {
+  const emailSignIn = async () => {
     await signInWithEmailAndPassword(auth, emailChange, passwordChange)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-         window.location.href = "/auth/dashboard";
+        window.location.href = "/dashboard";
         // ...
       })
       .catch((error) => {

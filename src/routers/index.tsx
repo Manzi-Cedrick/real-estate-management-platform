@@ -111,10 +111,9 @@ const pages: Page[] = [
   { path: "/signup", component: PageSignUp },
   { path: "/login", component: PageLogin },
   { path: "/subscription", component: PageSubcription },
-  { path: "/auth/dashboard", component: DashboardPage },
+  { path: "/dashboard", component: DashboardPage },
   //
 ];
-
 
 const MyRoutes = () => {
   let WIN_WIDTH = useWindowSize().width;
@@ -124,9 +123,8 @@ const MyRoutes = () => {
   const [isAuthRoute, setIsAuthRoute] = useState(false);
 
   useEffect(() => {
-   
-    setIsAuthRoute(window.location.pathname.includes("auth"));
-  },[]);
+    setIsAuthRoute(window.location.pathname.includes("dash"));
+  }, []);
 
   return (
     <BrowserRouter>

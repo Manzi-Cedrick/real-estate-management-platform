@@ -21,7 +21,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
   const navigate = useNavigate();
   const { googleSignIn, user } = useAuth();
   const [loading, setLoading] = useState<boolean>(false);
-  const [emailChange, setEamilChange] = useState<string>("")
+  const [emailChange, setEamilChange] = useState<string>("");
   const [passwordChange, setPasswordChange] = useState<string>("");
   const exp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
@@ -39,11 +39,13 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
             uid: user.uid,
             email: user.email,
           });
-          navigate("/auth/dashboard");
+          navigate("/dashboard");
         })
         .catch((error) => {
           if (error.code == "auth/weak-password")
-            toast("Password should be at least 6 characters!", { type: "error" });
+            toast("Password should be at least 6 characters!", {
+              type: "error",
+            });
           if (error.code == "auth/email-already-in-use")
             toast("Email already in used!", { type: "error" });
         });
@@ -57,21 +59,21 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setLoading(false);
-        navigate("/auth/dashboard");
+        navigate("/dashboard");
       } else {
         const data = {
           userId: user.uid,
-          metode: user.providerData[0].providerId
+          metode: user.providerData[0].providerId,
         };
         await setDoc(doc(db, "Users", user.uid), data);
         setLoading(false);
-        navigate("/auth/dashboard");
+        navigate("/dashboard");
       }
-    }
+    };
     if (user && user.uid) {
       setUserInfo();
     }
-  }, [user])
+  }, [user]);
 
   return (
     <div className={`nc-PageSignUp  ${className}`} data-nc-id="PageSignUp">
@@ -84,9 +86,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
         </h2>
         <div className="max-w-md mx-auto space-y-6 ">
           <div className="grid gap-3">
-            <button
-              className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
-            >
+            <button className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]">
               <img
                 className="flex-shrink-0"
                 src={facebookSvg}
@@ -96,9 +96,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
                 {"Continue with Facebook"}
               </h3>
             </button>
-            <button
-              className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
-            >
+            <button className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]">
               <img
                 className="flex-shrink-0"
                 src={twitterSvg}
@@ -110,7 +108,9 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
             </button>
             <button
               className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
-              onClick={() => { googleSignIn(); }}
+              onClick={() => {
+                googleSignIn();
+              }}
             >
               <img
                 className="flex-shrink-0"
@@ -130,7 +130,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
             <div className="absolute left-0 w-full top-1/2 transform -translate-y-1/2 border border-neutral-100 dark:border-neutral-800"></div>
           </div>
           {/* FORM */}
-          <div className="grid grid-cols-1 gap-6" >
+          <div className="grid grid-cols-1 gap-6">
             <label className="block">
               <span className="text-neutral-800 dark:text-neutral-200">
                 Email address
@@ -146,9 +146,15 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
               <span className="flex justify-between items-center text-neutral-800 dark:text-neutral-200">
                 Password
               </span>
-              <Input type="password" className="mt-1" onChange={(e) => setPasswordChange(e.target.value)} />
+              <Input
+                type="password"
+                className="mt-1"
+                onChange={(e) => setPasswordChange(e.target.value)}
+              />
             </label>
-            <ButtonPrimary onClick={() => emailSignUp()}>Continue</ButtonPrimary>
+            <ButtonPrimary onClick={() => emailSignUp()}>
+              Continue
+            </ButtonPrimary>
           </div>
 
           {/* ==== */}
@@ -158,7 +164,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
           </span>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
