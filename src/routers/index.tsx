@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Page } from "./types";
 import ScrollToTop from "./ScrollToTop";
@@ -46,9 +46,11 @@ import PageHome3 from "containers/PageHome/PageHome3";
 import ListingStayDetailPage from "containers/ListingDetailPage/listing-stay-detail/ListingStayDetailPage";
 import ListingCarDetailPage from "containers/ListingDetailPage/listing-car-detail/ListingCarDetailPage";
 import ListingExperiencesDetailPage from "containers/ListingDetailPage/listing-experiences-detail/ListingExperiencesDetailPage";
+import DashboardPage from "containers/dashboard/DashboardPage";
 import Protected from "./Protected";
+import { useLocation } from "react-router-dom";
 
-export const pages: Page[] = [
+const pages: Page[] = [
   { path: "/", exact: true, component: PageHome },
   { path: "/#", exact: true, component: PageHome },
   { path: "/home-1-header-2", exact: true, component: PageHome },
@@ -109,6 +111,7 @@ export const pages: Page[] = [
   { path: "/signup", component: PageSignUp },
   { path: "/login", component: PageLogin },
   { path: "/subscription", component: PageSubcription },
+  { path: "/dashboard", component: DashboardPage },
   //
 ];
 
@@ -117,23 +120,27 @@ const MyRoutes = () => {
   if (typeof window !== "undefined") {
     WIN_WIDTH = WIN_WIDTH || window.innerWidth;
   }
+  const [isAuthRoute, setIsAuthRoute] = useState(false);
+
+  useEffect(() => {
+    setIsAuthRoute(window.location.pathname.includes("dash"));
+  }, []);
 
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <SiteHeader />
 
+      {!isAuthRoute ? <SiteHeader /> : <></>}
       <Routes>
         {pages.map(({ component, path }) => {
           const Component = component;
           return <Route key={path} element={<Component />} path={path} />;
-
         })}
-        <Route element={<Page404 />} />
+        <Route path="/*" element={<Page404 />} />
       </Routes>
+      {!isAuthRoute ? <Footer /> : <></>}
 
       {WIN_WIDTH < 768 && <FooterNav />}
-      <Footer />
     </BrowserRouter>
   );
 };

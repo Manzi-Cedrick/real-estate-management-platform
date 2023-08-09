@@ -6,9 +6,7 @@ import { Helmet } from "react-helmet";
 import Input from "shared/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
-import {
-  signInWithEmailAndPassword
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
 import { db } from "../../firebase";
@@ -34,28 +32,28 @@ const PageLogin: FC<PageLoginProps> = ({ className = "" }) => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setLoading(false);
-        await navigate("/");
+        window.location.href = "/";
       } else {
         const data = {
           userId: user.uid,
-          metode: user.providerData[0].providerId
+          metode: user.providerData[0].providerId,
         };
         await setDoc(doc(db, "Users", user.uid), data);
         setLoading(false);
-        await navigate("/login");
+        window.location.href = "/dashboard";
       }
-    }
+    };
     if (user && user.uid) {
       setUserInfo();
     }
-  }, [user])
+  }, [user]);
 
-  const emailSignIn = () => {
-    signInWithEmailAndPassword(auth, emailChange, passwordChange)
+  const emailSignIn = async () => {
+    await signInWithEmailAndPassword(auth, emailChange, passwordChange)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        navigate("/");
+        window.location.href = "/dashboard";
         // ...
       })
       .catch((error) => {
@@ -71,21 +69,18 @@ const PageLogin: FC<PageLoginProps> = ({ className = "" }) => {
       });
   };
 
-
   return (
     <div className={`nc-PageLogin ${className}`} data-nc-id="PageLogin">
       <Helmet>
-      <title>Lotus Revenu</title>
-            </Helmet>
+        <title>Lotus Revenu</title>
+      </Helmet>
       <div className="container mb-24 lg:mb-32">
         <h2 className="my-20 flex items-center text-3xl leading-[115%] md:text-5xl md:leading-[115%] font-semibold text-neutral-900 dark:text-neutral-100 justify-center">
           Login
         </h2>
         <div className="max-w-md mx-auto space-y-6">
           <div className="grid gap-3">
-            <button
-              className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
-            >
+            <button className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]">
               <img
                 className="flex-shrink-0"
                 src={facebookSvg}
@@ -95,9 +90,7 @@ const PageLogin: FC<PageLoginProps> = ({ className = "" }) => {
                 {"Continue with Facebook"}
               </h3>
             </button>
-            <button
-              className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
-            >
+            <button className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]">
               <img
                 className="flex-shrink-0"
                 src={twitterSvg}
@@ -109,7 +102,9 @@ const PageLogin: FC<PageLoginProps> = ({ className = "" }) => {
             </button>
             <button
               className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
-              onClick={() => { googleSignIn(); }}
+              onClick={() => {
+                googleSignIn();
+              }}
             >
               <img
                 className="flex-shrink-0"
@@ -129,7 +124,7 @@ const PageLogin: FC<PageLoginProps> = ({ className = "" }) => {
             <div className="absolute left-0 w-full top-1/2 transform -translate-y-1/2 border border-neutral-100 dark:border-neutral-800"></div>
           </div>
           {/* FORM */}
-          <div className="grid grid-cols-1 gap-6" >
+          <div className="grid grid-cols-1 gap-6">
             <label className="block">
               <span className="text-neutral-800 dark:text-neutral-200">
                 Email address
@@ -148,9 +143,19 @@ const PageLogin: FC<PageLoginProps> = ({ className = "" }) => {
                   Forgot password?
                 </Link>
               </span>
-              <Input type="password" className="mt-1" onChange={(e) => setPasswordChange(e.target.value)} />
+              <Input
+                type="password"
+                className="mt-1"
+                onChange={(e) => setPasswordChange(e.target.value)}
+              />
             </label>
-            <ButtonPrimary onClick={() => { emailSignIn() }}>Continue</ButtonPrimary>
+            <ButtonPrimary
+              onClick={() => {
+                emailSignIn();
+              }}
+            >
+              Continue
+            </ButtonPrimary>
           </div>
 
           {/* ==== */}
