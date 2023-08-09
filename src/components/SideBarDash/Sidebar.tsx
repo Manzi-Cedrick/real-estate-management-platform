@@ -13,9 +13,9 @@ function Sidebar() {
   ];
   return (
     <div className="w-[15em] h-[100vh] mx-2 flex flex-col">
-      <div className="border-b-2 px-5 ">
+      <a href="/" className="border-b-2 px-5 ">
         <LogoSvg />
-      </div>
+      </a>
       <div className="pl-[25%] flex bg-[#f1f5f9] py-5 my-5 mt-2 rounded-full">
         <svg
           className="fill-current"

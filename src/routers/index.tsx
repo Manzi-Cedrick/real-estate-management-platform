@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Page } from "./types";
 import ScrollToTop from "./ScrollToTop";
@@ -48,6 +48,7 @@ import ListingCarDetailPage from "containers/ListingDetailPage/listing-car-detai
 import ListingExperiencesDetailPage from "containers/ListingDetailPage/listing-experiences-detail/ListingExperiencesDetailPage";
 import DashboardPage from "containers/dashboard/DashboardPage";
 import Protected from "./Protected";
+import { useLocation } from "react-router-dom";
 
 const pages: Page[] = [
   { path: "/", exact: true, component: PageHome },
@@ -113,9 +114,22 @@ const pages: Page[] = [
   //
 ];
 const protectedPages = [{ path: "/auth/dashboard", component: DashboardPage }];
-export const ProtectedRoutes = () => {
+
+const MyRoutes = () => {
+  let WIN_WIDTH = useWindowSize().width;
+  if (typeof window !== "undefined") {
+    WIN_WIDTH = WIN_WIDTH || window.innerWidth;
+  }
+  const [isAuthRoute, setIsAuthRoute] = useState(false);
+
+  useEffect(() => {
+   
+    setIsAuthRoute(window.location.pathname.includes("auth"));
+  },[window.location]);
+
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {protectedPages.map(({ component, path }) => {
           const Component = component;
@@ -123,19 +137,9 @@ export const ProtectedRoutes = () => {
         })}
         <Route element={<Page404 />} />
       </Routes>
-    </BrowserRouter>
-  );
-};
-export const MyRoutes = () => {
-  let WIN_WIDTH = useWindowSize().width;
-  if (typeof window !== "undefined") {
-    WIN_WIDTH = WIN_WIDTH || window.innerWidth;
-  }
+      {/* //others */}
 
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <SiteHeader />
+      {!isAuthRoute ? <SiteHeader /> : <></>}
       <Routes>
         {pages.map(({ component, path }) => {
           const Component = component;
@@ -143,9 +147,11 @@ export const MyRoutes = () => {
         })}
         <Route element={<Page404 />} />
       </Routes>
+      {!isAuthRoute ? <Footer /> : <></>}
 
       {WIN_WIDTH < 768 && <FooterNav />}
-      <Footer />
     </BrowserRouter>
   );
 };
+
+export default MyRoutes;
